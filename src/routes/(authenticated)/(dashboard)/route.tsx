@@ -1,5 +1,5 @@
 import { createFileRoute, Outlet, useRouter } from "@tanstack/react-router";
-import { DashboardLayout } from "@/components/templates/dashboard-layout";
+import { DashboardLayout } from "@/presentation/components/templates/dashboard-layout";
 import SupabaseAuthRepository from "@/data/repositories/supabase-auth-repository";
 import useAuthSession from "@/presentation/hooks/useAuthSession";
 import { useCallback, useMemo } from "react";

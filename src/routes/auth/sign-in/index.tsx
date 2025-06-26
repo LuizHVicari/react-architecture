@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import SignInScreen from "@/components/screens/sign-in-screen";
+import SignInScreen from "@/presentation/components/screens/sign-in-screen";
 import SupabaseAuthRepository from "@/data/repositories/supabase-auth-repository";
 import useSignInScreen from "@/presentation/view-models/useSignInScreen";
 

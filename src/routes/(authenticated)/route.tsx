@@ -1,5 +1,5 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
-import AuthGuard from "@/components/guards/AuthGuard";
+import AuthGuard from "@/presentation/components/guards/AuthGuard";
 import SupabaseAuthRepository from "@/data/repositories/supabase-auth-repository";
 
 const authRepository = new SupabaseAuthRepository();
