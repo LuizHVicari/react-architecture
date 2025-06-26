@@ -90,4 +90,27 @@ export default class SupabaseAuthRepository implements AuthRepository {
       return { success: false, reason: SignUpErrors.API_ERROR };
     }
   }
+
+  async getAuth(): Promise<UserSchema | null> {
+    try {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (!session?.user) {
+        return null;
+      }
+
+      return {
+        email: session.user.email ?? "",
+      };
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  }
+
+  async signOut(): Promise<void> {
+    await supabase.auth.signOut();
+  }
 }

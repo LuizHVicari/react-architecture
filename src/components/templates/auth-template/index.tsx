@@ -1,3 +1,4 @@
+import TypographyH3 from "@/components/atoms/typography-h3";
 import {
   Card,
   CardContent,
@@ -18,14 +19,20 @@ export default function AuthTemplate({
   description,
 }: AuthTemplateProps) {
   return (
-    <Card className="w-xl">
-      {title && (
-        <CardHeader>
-          <CardTitle>{title}</CardTitle>
-          {description && <CardDescription>{description}</CardDescription>}
-        </CardHeader>
-      )}
-      <CardContent>{children}</CardContent>
-    </Card>
+    <>
+      <Card className="sm:w-xl w-full hidden sm:flex">
+        {title && (
+          <CardHeader>
+            <CardTitle>{title}</CardTitle>
+            {description && <CardDescription>{description}</CardDescription>}
+          </CardHeader>
+        )}
+        <CardContent>{children}</CardContent>
+      </Card>
+      <div className="flex sm:hidden flex-col justify-center h-full w-full items-start px-6 gap-2">
+        <TypographyH3>{title}</TypographyH3>
+        <div className="w-full">{children}</div>
+      </div>
+    </>
   );
 }

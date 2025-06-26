@@ -23,4 +23,6 @@ export default interface AuthRepository {
   signUpWithEmail(
     formData: SignUpFormSchema
   ): Promise<Result<UserSchema, SignUpErrors>>;
+  getAuth(): Promise<UserSchema | null>;
+  signOut(): Promise<void>;
 }

@@ -55,7 +55,7 @@ export default function useSignInScreen({
       });
       console.log("Login bem-sucedido, deveria mostrar o toast");
       navigate({
-        to: "/",
+        to: "/home",
       });
     },
     onError: handleError,
