@@ -3,15 +3,18 @@ import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { AuthProvider } from "@/presentation/providers/auth-provider";
 import { ThemeProvider } from "@/presentation/providers/theme-provider";
+import { DependencyProvider } from "@/presentation/providers/dependency-provider";
 
 export const Route = createRootRoute({
   component: () => (
-    <ThemeProvider>
-      <AuthProvider>
-        <Toaster />
-        <Outlet />
-        <TanStackRouterDevtools />
-      </AuthProvider>
-    </ThemeProvider>
+    <DependencyProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <Toaster />
+          <Outlet />
+          <TanStackRouterDevtools />
+        </AuthProvider>
+      </ThemeProvider>
+    </DependencyProvider>
   ),
 });

@@ -28,23 +28,23 @@ export enum UpdateAppointmentErrors {
 
 export default interface AppointmentsRepository {
   createAppointment(
-    appointment: AppointmentSchema
+    appointment: AppointmentSchema,
   ): Promise<Result<AppointmentSchema, CreateAppointmentErrors>>;
 
   listAppointments(
-    filters: object
+    filters: object,
   ): Promise<Result<AppointmentSchema[], ListAppointmentsErrors>>;
 
   deleteAppointment(
-    id: AppointmentSchema["id"]
+    id: AppointmentSchema["id"],
   ): Promise<Result<true, DeleteAppointmentErrors>>;
 
   retrieveAppointment(
-    id: AppointmentSchema["id"]
+    id: AppointmentSchema["id"],
   ): Promise<Result<AppointmentSchema, RetrieveAppointmentErrors>>;
 
   updateAppointment(
     id: AppointmentSchema["id"],
-    updatedAppointment: Partial<AppointmentSchema>
+    updatedAppointment: Partial<AppointmentSchema>,
   ): Promise<Result<AppointmentSchema, UpdateAppointmentErrors>>;
 }

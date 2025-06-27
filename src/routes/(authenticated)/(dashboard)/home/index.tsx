@@ -1,27 +1,13 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/presentation/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/presentation/components/ui/table";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/presentation/components/ui/pagination";
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import AppointmentsTable from "@/presentation/components/organisms/appointments-table";
+
+const RouteComponent: React.FC = () => {
+  return (
+    <div className="h-full w-full p-4">
+      <AppointmentsTable appointments={mockAppointments} />
+    </div>
+  );
+};
 
 export const Route = createFileRoute("/(authenticated)/(dashboard)/home/")({
   component: RouteComponent,
@@ -109,93 +95,3 @@ const mockAppointments = [
     description: "Retorno",
   },
 ];
-
-function RouteComponent() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
-  
-  const totalPages = Math.ceil(mockAppointments.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentAppointments = mockAppointments.slice(startIndex, endIndex);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  return (
-    <div className="h-full w-full p-4">
-      <Card className="w-full max-w-6xl mx-auto">
-        <CardHeader>
-          <CardTitle>Minhas consultas</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="rounded-md border">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Paciente</TableHead>
-                  <TableHead>Data</TableHead>
-                  <TableHead>Horário</TableHead>
-                  <TableHead>Local</TableHead>
-                  <TableHead>Descrição</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {currentAppointments.map((appointment) => (
-                  <TableRow className="hover:bg-primary" key={appointment.id}>
-                    <TableCell className="font-medium">
-                      {appointment.patient}
-                    </TableCell>
-                    <TableCell>
-                      {new Date(appointment.date).toLocaleDateString("pt-BR")}
-                    </TableCell>
-                    <TableCell>{appointment.time}</TableCell>
-                    <TableCell>{appointment.place}</TableCell>
-                    <TableCell>{appointment.description}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-          
-          <div className="flex justify-between items-center">
-            <p className="text-sm text-muted-foreground">
-              Mostrando {startIndex + 1} a {Math.min(endIndex, mockAppointments.length)} de {mockAppointments.length} consultas
-            </p>
-            
-            <Pagination>
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious 
-                    onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
-                    className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
-                  />
-                </PaginationItem>
-                
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <PaginationItem key={page}>
-                    <PaginationLink
-                      onClick={() => handlePageChange(page)}
-                      isActive={currentPage === page}
-                      className="cursor-pointer"
-                    >
-                      {page}
-                    </PaginationLink>
-                  </PaginationItem>
-                ))}
-                
-                <PaginationItem>
-                  <PaginationNext
-                    onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
-                    className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
-                  />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}

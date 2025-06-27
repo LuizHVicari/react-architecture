@@ -28,7 +28,7 @@ export default function TextField<
   label,
   disabled = false,
   placeholder,
-}: TextFieldProps<TFieldValues, TName>) {
+}: TextFieldProps<TFieldValues, TName>): React.JSX.Element {
   return (
     <FormField
       control={control}
@@ -38,9 +38,9 @@ export default function TextField<
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <Input
-              type="text"
               disabled={disabled}
               placeholder={placeholder}
+              type="text"
               {...field}
             />
           </FormControl>

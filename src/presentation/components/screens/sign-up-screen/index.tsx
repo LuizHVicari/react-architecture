@@ -17,19 +17,19 @@ export default function SignUpScreen({
   isLoading,
   signUpError,
   onGoToSignIn,
-}: SignUpScreenProps) {
+}: SignUpScreenProps): React.JSX.Element {
   return (
     <div className="w-screen h-screen justify-center items-center flex">
       <AuthTemplate
-        title="Criar conta"
         description="Preencha os dados para criar sua conta"
+        title="Criar conta"
       >
         <SignUpForm
           form={form}
-          onSubmit={submitForm}
           isLoading={isLoading}
           signUpError={signUpError}
           onGoToSignIn={onGoToSignIn}
+          onSubmit={submitForm}
         />
       </AuthTemplate>
     </div>

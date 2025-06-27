@@ -17,7 +17,7 @@ export function DashboardLayout({
   user,
   isLoading,
   onSignOut,
-}: DashboardLayoutProps) {
+}: DashboardLayoutProps): React.JSX.Element {
   if (isLoading) {
     return (
       <div className="h-screen flex items-center justify-center">

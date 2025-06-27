@@ -31,7 +31,7 @@ export default function PasswordField<
   label,
   disabled = false,
   placeholder,
-}: PasswordFieldProps<TFieldValues, TName>) {
+}: PasswordFieldProps<TFieldValues, TName>): React.JSX.Element {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -44,18 +44,18 @@ export default function PasswordField<
           <FormControl>
             <div className="relative">
               <Input
-                type={showPassword ? "text" : "password"}
                 disabled={disabled}
                 placeholder={placeholder}
+                type={showPassword ? "text" : "password"}
                 {...field}
               />
               <Button
+                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                disabled={disabled}
+                size="sm"
                 type="button"
                 variant="ghost"
-                size="sm"
-                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
                 onClick={() => setShowPassword(!showPassword)}
-                disabled={disabled}
               >
                 {showPassword ? (
                   <EyeOff className="h-4 w-4" />

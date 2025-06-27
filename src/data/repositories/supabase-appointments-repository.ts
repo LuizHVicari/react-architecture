@@ -12,7 +12,9 @@ import { supabase } from "@/shared/clients/supabase-client";
 import SUPABASE_ENDPOINTS from "../constants/supabase-endpoints";
 import { appointmentApiDto } from "../dtos/appointment-dto";
 
-function toSnakeCaseAppointment(appointment: Partial<AppointmentSchema>) {
+function toSnakeCaseAppointment(
+  appointment: Partial<AppointmentSchema>,
+): Record<string, unknown> {
   return {
     id: appointment.id,
     created_by: appointment.createdBy,
@@ -28,7 +30,7 @@ export default class AppointmentsSupabaseRepository
   implements AppointmentsRepository
 {
   async createAppointment(
-    appointment: AppointmentSchema
+    appointment: AppointmentSchema,
   ): Promise<Result<AppointmentSchema, CreateAppointmentErrors>> {
     try {
       const appointmentToInsert = toSnakeCaseAppointment(appointment);
@@ -61,7 +63,7 @@ export default class AppointmentsSupabaseRepository
   }
 
   async listAppointments(
-    _: object
+    _: object,
   ): Promise<Result<AppointmentSchema[], ListAppointmentsErrors>> {
     try {
       const { data, error } = await supabase
@@ -75,7 +77,7 @@ export default class AppointmentsSupabaseRepository
         };
 
       const appointments = data.map((appointment) =>
-        appointmentApiDto.parse(appointment)
+        appointmentApiDto.parse(appointment),
       );
       return {
         success: true,
@@ -90,7 +92,7 @@ export default class AppointmentsSupabaseRepository
   }
 
   async deleteAppointment(
-    id: AppointmentSchema["id"]
+    id: AppointmentSchema["id"],
   ): Promise<Result<true, DeleteAppointmentErrors>> {
     try {
       const { error } = await supabase
@@ -112,7 +114,7 @@ export default class AppointmentsSupabaseRepository
   }
 
   async retrieveAppointment(
-    id: AppointmentSchema["id"]
+    id: AppointmentSchema["id"],
   ): Promise<Result<AppointmentSchema, RetrieveAppointmentErrors>> {
     try {
       const { data, error } = await supabase
@@ -144,7 +146,7 @@ export default class AppointmentsSupabaseRepository
 
   async updateAppointment(
     id: AppointmentSchema["id"],
-    updatedAppointment: Partial<AppointmentSchema>
+    updatedAppointment: Partial<AppointmentSchema>,
   ): Promise<Result<AppointmentSchema, UpdateAppointmentErrors>> {
     try {
       const appointmentToUpdate = toSnakeCaseAppointment(updatedAppointment);

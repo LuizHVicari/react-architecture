@@ -9,7 +9,10 @@ interface AuthGuardProps {
   authRepository: AuthRepository;
 }
 
-export default function AuthGuard({ children, authRepository }: AuthGuardProps) {
+export default function AuthGuard({
+  children,
+  authRepository,
+}: AuthGuardProps): React.JSX.Element | null {
   const [user, setUser] = useState<UserSchema | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const { navigate } = useRouter();
@@ -17,21 +20,21 @@ export default function AuthGuard({ children, authRepository }: AuthGuardProps) 
   useEffect(() => {
     let isMounted = true;
 
-    const checkAuth = async () => {
+    const checkAuth = async (): Promise<void> => {
       try {
         const userData = await authRepository.getAuth();
-        
+
         if (!isMounted) return;
-        
+
         setUser(userData);
-        
+
         if (!userData) {
           toast.warning("Ops, parece que você não está autenticado");
           navigate({ to: "/auth/sign-in" });
         }
       } catch (error) {
         if (!isMounted) return;
-        
+
         console.error("Auth check failed:", error);
         toast.error("Erro ao verificar autenticação");
         navigate({ to: "/auth/sign-in" });

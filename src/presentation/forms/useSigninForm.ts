@@ -58,7 +58,7 @@ export default function useSignInForm({
     },
   });
 
-  const onSubmit = async (data: SignInFormSchema) => {
+  const onSubmit = async (data: SignInFormSchema): Promise<void> => {
     setSignInError(undefined);
     await mutation.mutateAsync(data);
   };

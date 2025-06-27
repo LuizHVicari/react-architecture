@@ -19,35 +19,35 @@ export default function SignInForm({
   isLoading,
   signInError,
   onGoToSignUp,
-}: SignInFormProps) {
+}: SignInFormProps): React.JSX.Element {
   return (
     <Form {...form}>
-      <form onSubmit={onSubmit} className="space-y-4">
+      <form className="space-y-4" onSubmit={onSubmit}>
         <EmailField
           control={form.control}
-          name="email"
-          label="E-mail"
           disabled={isLoading}
+          label="E-mail"
+          name="email"
         />
 
         <PasswordField
           control={form.control}
-          name="password"
-          label="Senha"
           disabled={isLoading}
+          label="Senha"
+          name="password"
         />
 
         {signInError && <p className="text-sm text-red-500">{signInError}</p>}
 
-        <Button type="submit" disabled={isLoading} className="w-full">
+        <Button className="w-full" disabled={isLoading} type="submit">
           {isLoading ? "Carregando..." : "Entrar"}
         </Button>
         {onGoToSignUp && (
-          <Button 
-            type="button"
-            variant="secondary" 
-            className="w-full" 
+          <Button
+            className="w-full"
             disabled={isLoading}
+            type="button"
+            variant="secondary"
             onClick={onGoToSignUp}
           >
             Não tem conta? Criar conta

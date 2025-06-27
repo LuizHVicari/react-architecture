@@ -28,7 +28,7 @@ export default function EmailField<
   label,
   disabled = false,
   placeholder,
-}: EmailFieldProps<TFieldValues, TName>) {
+}: EmailFieldProps<TFieldValues, TName>): React.JSX.Element {
   return (
     <FormField
       control={control}
@@ -38,9 +38,9 @@ export default function EmailField<
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <Input
-              type="email"
               disabled={disabled}
               placeholder={placeholder}
+              type="email"
               {...field}
             />
           </FormControl>

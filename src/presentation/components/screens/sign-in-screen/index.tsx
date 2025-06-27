@@ -17,19 +17,16 @@ export default function SignInScreen({
   isLoading,
   signInError,
   onGoToSignUp,
-}: SignInScreenProps) {
+}: SignInScreenProps): React.JSX.Element {
   return (
     <div className="w-screen h-screen justify-center items-center flex">
-      <AuthTemplate
-        title="Entrar"
-        description="Faça login em sua conta"
-      >
+      <AuthTemplate description="Faça login em sua conta" title="Entrar">
         <SignInForm
           form={form}
-          onSubmit={submitForm}
           isLoading={isLoading}
           signInError={signInError}
           onGoToSignUp={onGoToSignUp}
+          onSubmit={submitForm}
         />
       </AuthTemplate>
     </div>

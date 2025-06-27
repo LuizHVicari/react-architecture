@@ -8,13 +8,14 @@ interface DashboardHeaderProps {
   onSignOut: () => void;
 }
 
-export function DashboardHeader({ title, onSignOut }: DashboardHeaderProps) {
+export function DashboardHeader({
+  title,
+  onSignOut,
+}: DashboardHeaderProps): React.JSX.Element {
   return (
     <div className="h-14 w-full shadow-sm flex flex-row items-center justify-between">
       <SidebarTrigger />
-      <TypographyLead className="truncate">
-        {title}
-      </TypographyLead>
+      <TypographyLead className="truncate">{title}</TypographyLead>
       <div className="h-full flex flex-row items-center gap-2 px-2">
         <ThemeToggle />
         <Button variant="link" onClick={onSignOut}>

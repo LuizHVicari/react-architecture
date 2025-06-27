@@ -1,17 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import SignInScreen from "@/presentation/components/screens/sign-in-screen";
-import SupabaseAuthRepository from "@/data/repositories/supabase-auth-repository";
-import useSignInScreen from "@/presentation/view-models/useSignInScreen";
+import { useDependencies } from "@/presentation/providers/dependency-provider";
+
+const SignInPage: React.FC = () => {
+  const { viewModels } = useDependencies();
+  const signInScreenProps = viewModels.useSignInScreen();
+
+  return <SignInScreen {...signInScreenProps} />;
+};
 
 export const Route = createFileRoute("/auth/sign-in/")({
   component: SignInPage,
 });
-
-function SignInPage() {
-  const authRepository = new SupabaseAuthRepository();
-  const signInScreenProps = useSignInScreen({
-    authRepository,
-  });
-
-  return <SignInScreen {...signInScreenProps} />;
-}

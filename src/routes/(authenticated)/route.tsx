@@ -1,17 +1,17 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 import AuthGuard from "@/presentation/components/guards/AuthGuard";
-import SupabaseAuthRepository from "@/data/repositories/supabase-auth-repository";
+import { useDependencies } from "@/presentation/providers/dependency-provider";
 
-const authRepository = new SupabaseAuthRepository();
+const AuthenticatedLayout: React.FC = () => {
+  const { authRepository } = useDependencies();
 
-export const Route = createFileRoute("/(authenticated)")({
-  component: AuthenticatedLayout,
-});
-
-function AuthenticatedLayout() {
   return (
     <AuthGuard authRepository={authRepository}>
       <Outlet />
     </AuthGuard>
   );
-}
+};
+
+export const Route = createFileRoute("/(authenticated)")({
+  component: AuthenticatedLayout,
+});

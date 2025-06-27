@@ -23,7 +23,7 @@ export default function useSignInScreen({
 }: Props): UseSignInScreenReturn {
   const { navigate } = useRouter();
 
-  const handleError = (error: SignInErrors) => {
+  const handleError = (error: SignInErrors): void => {
     switch (error) {
       case SignInErrors.INVALID_CREDENTIALS:
         toast.error("Credenciais inválidas", {
@@ -37,7 +37,8 @@ export default function useSignInScreen({
         break;
       case SignInErrors.EMAIL_NOT_CONFIRMED:
         toast.warning("Confirme seu email", {
-          description: "Verifique sua caixa de entrada e confirme seu email antes de fazer login.",
+          description:
+            "Verifique sua caixa de entrada e confirme seu email antes de fazer login.",
         });
         break;
       default:
@@ -63,7 +64,7 @@ export default function useSignInScreen({
 
   const submitForm = onSubmit;
 
-  const onGoToSignUp = () => {
+  const onGoToSignUp = (): void => {
     navigate({ to: "/auth/sign-up" });
   };
 

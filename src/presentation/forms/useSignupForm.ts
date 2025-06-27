@@ -52,7 +52,7 @@ export default function useSignUpForm({
     },
   });
 
-  const onSubmit = async (data: SignUpFormSchema) => {
+  const onSubmit = async (data: SignUpFormSchema): Promise<void> => {
     setSignUpError(undefined);
     await mutation.mutateAsync(data);
   };

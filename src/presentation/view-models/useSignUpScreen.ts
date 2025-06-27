@@ -37,7 +37,7 @@ export default function useSignUpScreen({
 
   const submitForm = onSubmit;
 
-  const onGoToSignIn = () => {
+  const onGoToSignIn = (): void => {
     navigate({ to: "/auth/sign-in" });
   };
 

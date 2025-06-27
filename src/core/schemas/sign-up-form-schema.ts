@@ -12,7 +12,7 @@ export const signUpFormSchema = z
       .min(8, "A senha deve ter pelo menos 8 caracteres")
       .max(32, "A senha deve ter no máximo 32 caracteres")
       .regex(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*-])[A-Za-z\d!@#$%&*-]{8,}$/
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*-])[A-Za-z\d!@#$%&*-]{8,}$/,
       ),
     confirmPassword: z.string({ message: "Confirme a sua senha" }),
   })

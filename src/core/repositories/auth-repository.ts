@@ -18,10 +18,10 @@ export enum SignInErrors {
 
 export default interface AuthRepository {
   signInWithEmail(
-    formData: SignInFormSchema
+    formData: SignInFormSchema,
   ): Promise<Result<UserSchema, SignInErrors>>;
   signUpWithEmail(
-    formData: SignUpFormSchema
+    formData: SignUpFormSchema,
   ): Promise<Result<UserSchema, SignUpErrors>>;
   getAuth(): Promise<UserSchema | null>;
   signOut(): Promise<void>;

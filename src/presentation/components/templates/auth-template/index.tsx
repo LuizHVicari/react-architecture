@@ -17,7 +17,7 @@ export default function AuthTemplate({
   children,
   title,
   description,
-}: AuthTemplateProps) {
+}: AuthTemplateProps): React.JSX.Element {
   return (
     <>
       <Card className="sm:w-xl w-full hidden sm:flex">

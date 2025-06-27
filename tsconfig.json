@@ -1,5 +1,10 @@
 {
   "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": [
+    "node_modules",
+    "src/presentation/components/ui/**/*",
+    "vite.config.ts"
+  ],
   "compilerOptions": {
     "target": "ES2022",
     "jsx": "react-jsx",
