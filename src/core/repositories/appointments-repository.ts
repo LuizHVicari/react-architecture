@@ -1,7 +1,6 @@
 import type { AppointmentSchema } from "../schemas/appointment-schema";
 import type { Result } from "../types/result";
 
-// Enums de erro para cada operação
 export enum CreateAppointmentErrors {
   InvalidParameters,
 }
@@ -32,7 +31,7 @@ export default interface AppointmentsRepository {
   ): Promise<Result<AppointmentSchema, CreateAppointmentErrors>>;
 
   listAppointments(
-    filters: object,
+    filters: Record<string, unknown>,
   ): Promise<Result<AppointmentSchema[], ListAppointmentsErrors>>;
 
   deleteAppointment(

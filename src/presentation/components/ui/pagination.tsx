@@ -56,7 +56,7 @@ function PaginationLink({
           variant: isActive ? "outline" : "ghost",
           size,
         }),
-        className,
+        className
       )}
       data-active={isActive}
       data-slot="pagination-link"
@@ -67,6 +67,7 @@ function PaginationLink({
 
 function PaginationPrevious({
   className,
+  title,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
   return (
@@ -77,13 +78,14 @@ function PaginationPrevious({
       {...props}
     >
       <ChevronLeftIcon />
-      <span className="hidden sm:block">Previous</span>
+      <span className="hidden sm:block">{title}</span>
     </PaginationLink>
   );
 }
 
 function PaginationNext({
   className,
+  title,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
   return (
@@ -93,7 +95,7 @@ function PaginationNext({
       size="default"
       {...props}
     >
-      <span className="hidden sm:block">Next</span>
+      <span className="hidden sm:block">{title}</span>
       <ChevronRightIcon />
     </PaginationLink>
   );

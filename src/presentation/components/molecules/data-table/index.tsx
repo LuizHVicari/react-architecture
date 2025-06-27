@@ -3,6 +3,7 @@ import DataTableHeader from "../../atoms/table-header";
 import DataTableRow from "../../atoms/table-row-data";
 import TablePagination from "../table-pagination";
 import For from "../../atoms/for";
+import Show from "../../atoms/show";
 
 interface Props<T> {
   columns: string[];
@@ -46,9 +47,18 @@ function DataTable<T>({
       </div>
 
       <div className="flex justify-between items-center">
-        <p className="text-sm text-muted-foreground">
-          Mostrando {startIndex + 1} a {endIndex} de {totalItems} itens
-        </p>
+        <Show
+          fallback={
+            <p className="text-sm text-muted-foreground">
+              Nenhum item encontrado
+            </p>
+          }
+          when={data.length > 0}
+        >
+          <p className="text-sm text-muted-foreground">
+            Mostrando {startIndex + 1} a {endIndex} de {totalItems} itens
+          </p>
+        </Show>
 
         <TablePagination
           currentPage={currentPage}
